@@ -32,7 +32,7 @@ public class GuestController {
 
     GuestRepository guestRepository;
 
-    @GetMapping("")
+   /* @GetMapping("")
     public ResponseEntity<List<Guest>> getAllGuests(@RequestParam(required = false) String name) {
         try {
             List<Guest> guests = new ArrayList<Guest>();
@@ -50,6 +50,7 @@ public class GuestController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    */
 
     @GetMapping("/{id}")
     public ResponseEntity<Guest> getTutorialById(@PathVariable("id") Long id) {
