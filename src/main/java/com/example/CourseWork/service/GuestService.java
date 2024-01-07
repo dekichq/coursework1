@@ -1,17 +1,19 @@
 package com.example.CourseWork.service;
 
-import com.example.CourseWork.dto.model.GuestDTO;
-import com.example.CourseWork.model.Guest;
-import com.example.CourseWork.repository.GuestRepository;
+import com.example.CourseWork.dto.GuestDTO;
+import com.example.CourseWork.dto.responses.GuestResponse;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-
+@Service
 public interface GuestService {
     GuestDTO registerGuest(GuestDTO guestDTO);
 
-    GuestDTO findGuestByName(String name);
+    GuestDTO findGuestById(Long id);
 
-    GuestDTO updateGuestInfo(GuestDTO guestDTO);
+    GuestDTO updateGuestInfo(GuestDTO guestDTO, Long id);
+
+    GuestDTO deleteGuest(Long id);
+
+    GuestResponse getAllGuests(int pageNo, int pageSize, String sortBy, String sortDir);
+
 }

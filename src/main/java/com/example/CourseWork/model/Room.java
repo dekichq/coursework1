@@ -1,66 +1,66 @@
 package com.example.CourseWork.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Table(name = "room")
+@Table(name = "rooms")
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
-    @Column(name = "roomNumber")
-    private int roomNumber;
     @Column(name = "price")
     private float price;
     @Column(name = "status")
     private String status;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "guest_id", referencedColumnName = "id")
+    private Guest guestId;
 
     public Room() {
     }
 
-    public Room(Long id, int roomNumber, float price, String status) {
+    public Room(Long id, float price, String status, Guest guestId) {
         this.id = id;
-        this.roomNumber = roomNumber;
         this.price = price;
         this.status = status;
+        this.guestId = guestId;
     }
 
     public Long getId() {
         return id;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
-    }
-
     public float getPrice() {
         return price;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
     }
 
     public void setPrice(float price) {
         this.price = price;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public void setStatus(String status) {
         this.status = status;
     }
 
-    @Override
+    public Guest getGuestId() {
+        return guestId;
+    }
+
+    public void setGuestId(Guest guestId) {
+        this.guestId = guestId;
+    }
     public String toString() {
         return "Room{" +
                 "id=" + id +
-                ", roomNumber=" + roomNumber +
                 ", price=" + price +
                 ", status='" + status + '\'' +
+                ", guestId=" + guestId +
                 '}';
     }
 }

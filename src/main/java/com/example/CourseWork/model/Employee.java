@@ -3,8 +3,8 @@ package com.example.CourseWork.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "guests")
-public class Guest {
+@Table(name = "employees")
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -13,17 +13,29 @@ public class Guest {
     private String name;
     @Column(name = "surname")
     private String surname;
-    @Column(name = "phone_number")
-    private String phonenumber;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private Role role;
 
-    public Guest(String name, String surname, String phonenumber) {
-        this.name = name;
-        this.surname = surname;
-        this.phonenumber = phonenumber;
+    public Employee() {
     }
 
-    public Guest() {
+    public Employee(String name, String surname, Role role) {
+        this.name = name;
+        this.surname = surname;
+        this.role = role;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Long getId() {
@@ -38,34 +50,17 @@ public class Guest {
         return surname;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public Role getRole() {
+        return role;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
-    }
-
 
     @Override
     public String toString() {
-        return "Guest{" +
+        return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", phonenumber='" + phonenumber + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

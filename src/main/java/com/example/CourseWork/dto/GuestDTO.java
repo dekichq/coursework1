@@ -1,34 +1,17 @@
-package com.example.CourseWork.model;
-
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "guests")
-public class Guest {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-    @Column(name = "name")
+package com.example.CourseWork.dto;
+public class GuestDTO {
     private String name;
-    @Column(name = "surname")
     private String surname;
-    @Column(name = "phone_number")
     private String phonenumber;
 
-    public Guest(String name, String surname, String phonenumber) {
+
+    public GuestDTO(String name, String surname, String phonenumber) {
         this.name = name;
         this.surname = surname;
         this.phonenumber = phonenumber;
     }
 
-    public Guest() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
+    public GuestDTO(){}
 
     public String getName() {
         return name;
@@ -40,10 +23,6 @@ public class Guest {
 
     public String getPhonenumber() {
         return phonenumber;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setName(String name) {
@@ -58,12 +37,9 @@ public class Guest {
         this.phonenumber = phonenumber;
     }
 
-
-    @Override
     public String toString() {
-        return "Guest{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "GuestDTO{" +
+                "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", phonenumber='" + phonenumber + '\'' +
                 '}';
